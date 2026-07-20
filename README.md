@@ -10,11 +10,12 @@ Only sanitized distribution copies belong here. Installed skills under personal 
 
 Repository-level original work is licensed under MIT. Adapted or third-party material must retain its upstream license and attribution, and may declare different terms inside its own directory.
 
-## Staged Skills
+## Available Skills
 
 | Skill | Status | Purpose |
 |---|---|---|
-| [`understand-before-approve`](skills/understand-before-approve/) | Validated candidate | Builds an evidence-backed comprehension gate before consequential decisions |
+| [`understand-before-approve`](skills/understand-before-approve/) | Validated | Builds an evidence-backed comprehension gate before consequential decisions |
+| [`incident-triage`](skills/incident-triage/) | Validated | Converts unclear multi-layer failures into a read-only diagnostic packet before fixing |
 
 ## Initial Release Order
 

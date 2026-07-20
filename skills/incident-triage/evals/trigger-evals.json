@@ -1,0 +1,50 @@
+[
+  {
+    "query": "Production is missing records, the API has 502s, and the queue is backing up. Triage the incident before anyone changes anything.",
+    "should_trigger": true
+  },
+  {
+    "query": "Nothing is coming in from the webhook and we do not know whether the provider, API, worker, or database failed.",
+    "should_trigger": true
+  },
+  {
+    "query": "The deployment completed but staging is broken across the UI and API. Find the first failed layer.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our runbook says to restart a service that no longer exists. Verify the shortcut and triage the current failure.",
+    "should_trigger": true
+  },
+  {
+    "query": "Authentication failures started after a release, but provider and application logs disagree. Do not rotate credentials yet.",
+    "should_trigger": true
+  },
+  {
+    "query": "A parser pipeline stopped producing output and we do not know whether files arrived, extraction failed, or the worker stalled.",
+    "should_trigger": true
+  },
+  {
+    "query": "The failing unit test and exact function are known. Diagnose and fix the local bug.",
+    "should_trigger": false
+  },
+  {
+    "query": "CI fails only on a TypeScript typecheck. Use the dedicated CI workflow.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain what an HTTP 502 status means.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a generic incident-response checklist for future projects.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this pull request for defects and missing tests.",
+    "should_trigger": false
+  },
+  {
+    "query": "The incident is resolved and the evidence is settled. Write the postmortem.",
+    "should_trigger": false
+  }
+]

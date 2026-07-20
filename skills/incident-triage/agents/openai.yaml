@@ -1,0 +1,4 @@
+interface:
+  display_name: "Incident Triage"
+  short_description: "Turn incidents into diagnostic packets"
+  default_prompt: "Use $incident-triage to classify the failure, name the first failed layer, and give the next two-minute check before fixing."
