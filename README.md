@@ -4,11 +4,11 @@ A curated collection of reusable agent skills maintained by Jinni.
 
 ## Status
 
-This repository is private while the first public release candidates are sanitized, licensed, and validated.
+This is an open-source collection of sanitized, validated agent skills released under the MIT License.
 
 Only sanitized distribution copies belong here. Installed skills under personal agent directories are working sources, not public release sources.
 
-Repository licensing is still pending. The repository must remain private until a license and attribution posture are explicitly selected.
+Repository-level original work is licensed under MIT. Adapted or third-party material must retain its upstream license and attribution, and may declare different terms inside its own directory.
 
 ## Staged Skills
 
@@ -43,4 +43,8 @@ docs/               Release policy and portfolio documentation
 README.md           Repository overview
 ```
 
-Every staged skill must pass the release checklist before the repository becomes public.
+Every skill must pass the release checklist before it is added to the public `main` branch.
+
+## License
+
+Original work in this repository is available under the [MIT License](LICENSE). Third-party or adapted material remains subject to any license and attribution included in its skill directory.
