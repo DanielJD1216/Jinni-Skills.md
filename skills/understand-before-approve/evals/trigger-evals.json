@@ -1,0 +1,74 @@
+[
+  {
+    "query": "Before we merge, give me a real explanation of what changed and why, what it depends on, and put questions together for me to answer. Include a plain-English explanation.",
+    "should_trigger": true
+  },
+  {
+    "query": "What am I actually approving in this database migration? Explain the recovery limits and quiz me before I decide.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explain this before I approve the production release. Separate confirmed facts from blind spots and do not deploy anything.",
+    "should_trigger": true
+  },
+  {
+    "query": "Quiz me before merge on what changed, what stayed protected, and what rollback cannot undo.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me understand the blind spots before I accept this client UAT and sign off on the release.",
+    "should_trigger": true
+  },
+  {
+    "query": "Before I grant the provider permission, explain the dependency map, blast radius, and owner choices.",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to approve this architecture change. Test whether I understand the failure modes, then show me what decisions are still mine.",
+    "should_trigger": true
+  },
+  {
+    "query": "The deep link uses a record ID that may disappear. Explain what I am approving and quiz me on the fallback before sign-off.",
+    "should_trigger": true
+  },
+  {
+    "query": "I cannot answer the technical approval quiz because I do not know the domain. Show me the recommended answers and choices before I decide.",
+    "should_trigger": true
+  },
+  {
+    "query": "Walk me through whether this release is ready to ship, what the evidence actually proves, and which blind spots I still need to decide.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explain database migrations in plain English for a beginner.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review this pull request for defects and missing tests. No approval decision is pending.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize what changed in this commit.",
+    "should_trigger": false
+  },
+  {
+    "query": "What is the difference between rollback and roll-forward recovery?",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a generic deployment checklist for future projects.",
+    "should_trigger": false
+  },
+  {
+    "query": "Compare two architecture patterns for a tutorial. We are not choosing one.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the failing migration test and show me the patch.",
+    "should_trigger": false
+  },
+  {
+    "query": "Rewrite this approval button label so it is shorter.",
+    "should_trigger": false
+  }
+]

@@ -8,6 +8,14 @@ This repository is private while the first public release candidates are sanitiz
 
 Only sanitized distribution copies belong here. Installed skills under personal agent directories are working sources, not public release sources.
 
+Repository licensing is still pending. The repository must remain private until a license and attribution posture are explicitly selected.
+
+## Staged Skills
+
+| Skill | Status | Purpose |
+|---|---|---|
+| [`understand-before-approve`](skills/understand-before-approve/) | Validated candidate | Builds an evidence-backed comprehension gate before consequential decisions |
+
 ## Initial Release Order
 
 1. `understand-before-approve`
@@ -35,4 +43,4 @@ docs/               Release policy and portfolio documentation
 README.md           Repository overview
 ```
 
-The first skill will be added only from its sanitized distribution package.
+Every staged skill must pass the release checklist before the repository becomes public.

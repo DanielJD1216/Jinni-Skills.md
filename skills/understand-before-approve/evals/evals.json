@@ -1,0 +1,81 @@
+{
+  "skill_name": "understand-before-approve",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Before we merge a fictional inventory-adjustment audit fix, give me a real explanation of what changed and why, what it depends on, and put questions together for me to answer. Include a plain-English explanation. The evidence says adjustment approvals were saved but absent from Item History because audit metadata omitted item_id. The fix adds item_id, attribute_path, and prior_revision. The History UI categorizes the entry as Approvals and displays actor, prior and chosen values, and reason. The deep link uses the audit resource ID as proposalId and opens the exact Change Review dialog. Exact behavior depends on the proposal still existing, and historical fallback is unresolved. A fictional UAT run kept the reorder threshold at 40 units and item revision stayed r12. Old pre-fix audit rows were not backfilled. Do not merge or reveal the answer key before I respond.",
+      "expected_output": "An evidence-labeled initial approval gate that explains the fictional traceability fix in plain English before technical detail, separates unchanged operational state from changed audit behavior, exposes the mutable proposal dependency and missing historical fallback, asks substantive objective quiz questions separately from owner decisions, and ends NOT READY without recommending or performing a merge.",
+      "files": [],
+      "expectations": [
+        "The direct answer and plain-English explanation appear before technical detail and state that the decision concerns a traceability fix, not an inventory-setting change.",
+        "The output states that adjustment approvals were saved but absent from Item History because audit metadata omitted item_id.",
+        "The output identifies item_id, attribute_path, and prior_revision as added metadata and describes the Approvals display with actor, prior value, chosen value, and reason.",
+        "The output states that the audit resource ID is used as proposalId to open the exact Change Review dialog.",
+        "The output explains that exact navigation depends on the proposal still existing, marks historical fallback unresolved, and includes an objective quiz question about this dependency.",
+        "The output states that the fictional UAT preserved the reorder threshold at 40 units and item revision r12 without treating UAT as proof of production deployment.",
+        "The output states that old pre-fix rows were not backfilled and treats whether to backfill as an owner decision rather than a quiz answer.",
+        "The initial quiz uses substantive short-answer or scenario questions, hides the answer key, and remains separate from owner decisions.",
+        "The output ends with NOT READY and neither recommends nor performs merge approval."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I am being asked to approve a production migration that adds a non-null ledger_entry.account_id column, backfills it from invoices, then adds a foreign key. The application release reads the new column. CI passed unit tests, but I have no row-count reconciliation, no production backup verification, no dry-run timing, and no tested recovery plan if the backfill partially commits. Explain what I am actually approving, inspect the evidence limits, quiz me on migration order and recovery, and separate owner choices from technical facts. Do not approve or deploy it.",
+      "expected_output": "A high-risk migration understanding gate that explains ordering and persistent data effects, distinguishes application rollback from data recovery, labels the missing production evidence, asks scenario-based objective questions, separates owner risk choices, and returns BLOCKED BY EVIDENCE without approval or deployment.",
+      "files": [],
+      "expectations": [
+        "The output explains the required order between adding a nullable or otherwise backfillable column, populating account_id, validating rows, enforcing non-null, adding the foreign key, and releasing readers, without inventing evidence that the prompt does not provide.",
+        "The output states that passing unit tests does not prove production row reconciliation, backup validity, migration duration, lock behavior, or partial-commit recovery.",
+        "The dependency map includes invoices, ledger entries, backfill logic, constraint enforcement, application readers, and recovery or rollback boundaries.",
+        "The output distinguishes application rollback from persistent schema or data changes and asks a scenario question about a partially committed backfill.",
+        "The owner decisions section contains judgment calls such as acceptable downtime, recovery threshold, rollout timing, or whether missing evidence must be obtained; it does not grade those choices as right or wrong.",
+        "The verdict is BLOCKED BY EVIDENCE, and the output names the smallest evidence needed to unblock the gate.",
+        "The response does not recommend or perform approval or deployment."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Explain in plain English how a database foreign key works, then show a tiny SQL example. I am learning and there is no pending migration, merge, deploy, approval, sign-off, or acceptance decision.",
+      "expected_output": "A concise ordinary educational explanation with a small SQL example. The approval understanding gate should not trigger, and the response should not add evidence inspection, a quiz, owner decisions, or an approval-readiness verdict.",
+      "files": [],
+      "expectations": [
+        "The response directly explains foreign keys in plain English and includes a small valid SQL example.",
+        "The response does not invent a pending consequential decision.",
+        "The response does not include an approval gate, comprehension quiz, owner decisions section, or readiness verdict."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Continue the fictional inventory-audit understanding gate after I answered the five quiz questions and owner decisions. My answers are: (1) The event was saved, but missing item_id kept Item History from selecting it; adding item_id fixes that connection. (2) attribute_path makes it appear in Item History, and the fix changes the reorder threshold before displaying the chosen value. (3) No answer yet. (4) The proposal must still exist; without it, exact dialog navigation is not guaranteed because no fallback is confirmed. (5) If an old row is absent from Item History, the adjustment approval was never saved. Owner choices: accept forward-only behavior with no backfill in this merge; missing-proposal fallback is undecided; no more role coverage is required. Grade me using the hidden evidence-backed key, correct misunderstandings in plain English, re-quiz only failed load-bearing concepts, track the unanswered item and owner decisions, and recompute readiness. Do not approve or merge anything.",
+      "expected_output": "A second-turn grading response that marks answers 1 and 4 Pass, answers 2 and 5 Needs correction, answer 3 Unanswered, corrects only attempted misunderstandings, keeps the unanswered answer key hidden, re-quizzes only failed load-bearing concepts, records explicit and pending owner decisions, and returns NOT READY without automatic approval.",
+      "files": [],
+      "expectations": [
+        "The output grades answers 1 and 4 Pass because they correctly identify the item_id connection and mutable proposal dependency.",
+        "The output grades answers 2 and 5 Needs correction because attribute_path does not create item inclusion, the fix does not change the reorder threshold, and absence of an old row does not prove the approval was never saved.",
+        "The output grades answer 3 Unanswered and does not reveal its hidden answer because no answer was attempted.",
+        "Plain-English corrections appear only after the attempted incorrect answers and explain why item_id differs from display metadata and why old saved rows can remain invisible without backfill.",
+        "The focused re-quiz covers only the failed load-bearing concepts from answers 2 and 5; passed answers 1 and 4 are not re-quizzed.",
+        "The unanswered third item remains pending without a disclosed key or fabricated grade.",
+        "Owner decision status records forward-only scope and role coverage as explicit while missing-proposal fallback remains pending.",
+        "The recomputed verdict is NOT READY because failed and unanswered comprehension items and a pending owner decision remain.",
+        "The response states that later comprehension success can only produce READY FOR OWNER DECISION and does not recommend, perform, or imply automatic approval or merge."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I need to decide whether to commit a reviewed inventory-sync queue-recovery fix, but I cannot answer the technical quiz because I do not know the job queue or external inventory API. The evidence says a queue failure now records failed status, preserves the pending external operation, hides the raw infrastructure error, and lets the operator retry. All local tests and review gates passed, but no deployed broker-outage HTTP test was run and production multi-warehouse routing is still undecided. Show me recommended factual answers and recommended owner choices, explain the tradeoffs, and keep approval and execution separate.",
+      "expected_output": "A Guided-mode understanding gate that teaches the load-bearing model with visible recommended factual answers, offers evidence-backed recommended owner choices with alternatives, asks for explicit confirmation or amendment rather than cold technical recall, and remains NOT READY until the owner responds. It must not commit, merge, deploy, or imply that adopting the recommendations executes anything.",
+      "files": [],
+      "expectations": [
+        "The output explicitly selects Guided mode because the owner lacks domain knowledge and does not treat that unfamiliarity as a failed quiz.",
+        "Recommended factual answers explain that queue failure becomes visible failed state, preserves the external operation, hides raw infrastructure details, and exposes retry.",
+        "The output separates confirmed local evidence from the missing deployed broker-outage HTTP observation.",
+        "The output states that production multi-warehouse routing remains outside the reviewed change.",
+        "The comprehension check asks the owner to confirm, amend, dispute, or teach back the visible recommendations instead of guessing hidden technical answers.",
+        "Recommended owner choices are labeled as analysis, include realistic alternatives and tradeoffs, and still require explicit adoption or amendment.",
+        "The verdict remains NOT READY while confirmations and owner decisions are pending.",
+        "The response states that guided confirmation does not approve, commit, merge, deploy, or perform provider actions."
+      ]
+    }
+  ]
+}

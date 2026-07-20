@@ -1,0 +1,4 @@
+interface:
+  display_name: "Understand Before Approve"
+  short_description: "Understand consequential changes before deciding"
+  default_prompt: "Use $understand-before-approve to inspect the evidence, explain what I am actually approving, teach me with recommended answers when I lack domain knowledge or use a hidden-answer quiz when requested, separate owner decisions, and stop at approval readiness."
