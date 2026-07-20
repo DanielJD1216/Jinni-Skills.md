@@ -1,0 +1,17 @@
+.DS_Store
+__MACOSX/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+dist/
+build/
+*.skill
+*.zip
