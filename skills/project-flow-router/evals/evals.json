@@ -1,0 +1,29 @@
+{
+  "skill_name": "project-flow-router",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use project-flow-router. This inherited repository has no current project context, and I want accurate AGENTS.md instructions.",
+      "expected_output": "Participate and return project-start followed by agent-setup as a prerequisite sequence. Use route-only as the boundary and stop after current project truth is established.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Use project-flow-router. Production stopped receiving webhooks, the queue is empty, and we do not know whether auth, ingress, or the worker failed.",
+      "expected_output": "Participate, select incident-triage, use route-only, and do not diagnose or repair the system inside the routing decision.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Use project-flow-router. Approve this database migration for production.",
+      "expected_output": "Participate and select understand-before-approve as the mandatory first gate. Stop before approval or deployment work.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Use project-flow-router and proceed with recovery.",
+      "expected_output": "Participate but stop and ask for the current target and exact authoritative recovery pointer. Do not inspect the workspace or discover a recovery file.",
+      "files": []
+    }
+  ]
+}

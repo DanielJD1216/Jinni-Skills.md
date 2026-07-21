@@ -1,0 +1,372 @@
+# Contents: identity and tier semantics; non-candidates; automatic owners;
+# conditional owners; blocked owners; conflict groups; prerequisite rules;
+# active-Fabled rules; maintenance; terminal completeness sentinel.
+
+schema_version: 1
+profile_id: public-starter
+status: active
+version: "1.10.0"
+updated_at: "2026-07-19"
+
+# Availability and preference remain separate truths.
+catalog_source: host_exposed
+require_valid_live_catalog: true
+default_unlisted: explicit_only
+
+tier_semantics:
+  auto_route: "May be inferred only when the entry condition is established."
+  conditional: "May be inferred only when every listed condition is established by the request, active run, or the router's one allowed inspection."
+  explicit_only: "Never infer. Honor a valid explicit invocation unless another safety or container rule blocks execution."
+  blocked: "Never select silently. On explicit invocation, report the reason and stop for a decision."
+
+explicit_owner_precedence: true
+missing_profile_behavior: stop_and_confirm
+invalid_profile_behavior: stop_and_confirm
+absent_from_live_catalog_behavior: unavailable_and_stop
+
+non_candidate_owners:
+  - name: project-flow-router
+    reason: "The router may be the operating owner but can never select itself as a downstream owner."
+  - name: fabled
+    reason: "Fabled is an outer lifecycle container, not a downstream router candidate."
+
+auto_route:
+  - name: project-start
+    condition: "The user asks to orient, revisit, recover current project context, or report where a project stands, and no accepted current-state record already answers it."
+    first_stop: "Current project truth is established."
+
+  - name: grill-me
+    condition: "The requested outcome is to pressure-test, interrogate, or expose assumptions, risks, scope gaps, or decision weaknesses."
+    first_stop: "The interrogation produces a bounded decision or unresolved question set."
+
+  - name: skill-maker
+    condition: "The user requests a new non-trivial skill or a substantial redesign of a skill's workflow and package."
+    excludes:
+      - "Existing-package hardening, scoring, behavioral evaluation, or packaging only."
+      - "A factual question about a skill."
+    first_stop: "A coherent candidate skill exists for review or real-target testing."
+
+  - name: skill-forge
+    condition: "The user requests evidence-backed improvement, trigger evaluation, structural scoring, production hardening, validation, or packaging of an existing skill candidate."
+    excludes:
+      - "Creating a new skill from an undeveloped capability idea."
+      - "A factual or naming question with no package inspection requested."
+    first_stop: "A tested candidate and release verdict exist."
+
+  - name: loop-engineering
+    condition: "The user explicitly requests a bounded builder-auditor-refinement loop, or the accepted plan requires iterative build and independent audit of one bounded artifact."
+    excludes:
+      - "Ordinary multi-step implementation."
+      - "A single review or a single edit."
+    first_stop: "The bounded acceptance criteria pass or the loop reaches its declared stop condition."
+
+  - name: incident-triage
+    condition: "An operational failure spans unknown layers, such as broken staging or production, missing data, webhook or queue failure, auth failure, or unexplained 4xx/5xx behavior."
+    excludes:
+      - "A deterministic localized code defect with a known failing component."
+      - "CI-only failure with an unambiguous dedicated CI owner."
+    first_stop: "The incident is localized enough for a repair owner or blocked by named evidence."
+
+  - name: diagnose
+    condition: "A deterministic local failure is already bounded to a component, test, command, or reproducible code path."
+    excludes:
+      - "Unknown multi-layer incidents."
+      - "CI-only failures with a dedicated CI owner."
+    first_stop: "The supported cause or exact remaining uncertainty is identified."
+
+  - name: docs-audit
+    condition: "The requested outcome is to compare repository documentation with current implementation or operational truth and repair documented drift."
+    excludes:
+      - "Writing one already-specified document."
+      - "General product or codebase audit."
+    first_stop: "Material documentation drift is resolved or reported."
+
+  - name: handoff
+    condition: "The user requests a standalone pause, transfer, context switch, or compact resume record, and no proven active Fabled run already owns the handoff."
+    first_stop: "The next owner, accepted state, evidence pointers, and next gate are preserved."
+
+  - name: understand-before-approve
+    condition: "The current task attempts a consequential approval, merge, deployment, acceptance, sign-off, provider permission, money-impacting change, or similarly material decision."
+    first_stop: "The skill returns its current readiness verdict."
+    mandatory_gate: true
+
+conditional:
+  # Visual and product-direction family
+  - name: taste-skill
+    all_conditions:
+      - "The output is polished frontend implementation, a coded visual prototype, or a bounded code-level redesign."
+      - "A target surface or accepted visual direction is supplied."
+      - "The request is not audit-only or strategy-only."
+    conflict_behavior: ask_one_owner_changing_question
+
+  - name: ui-ux-pro-max
+    all_conditions:
+      - "The output is UI/UX planning, interaction rules, information architecture, component guidance, or a design-system recommendation."
+      - "Current code implementation is not the requested deliverable."
+      - "The request is not an integrated multi-plane product-direction audit."
+    conflict_behavior: ask_one_owner_changing_question
+
+  - name: product-design:audit
+    all_conditions:
+      - "An existing screen, screenshot, prototype, design file, or URL is supplied."
+      - "The requested output is a product-design critique or audit, not implementation."
+      - "The audit does not require integrated discovery, code, and user-feedback traceability."
+    conflict_behavior: ask_one_owner_changing_question
+
+  - name: product-direction-audit
+    all_conditions:
+      - "The requested decision depends on at least two evidence planes among discovery, design, implementation, incident, or user feedback."
+      - "The user requests an integrated product-direction verdict or full-direction audit."
+    conflict_behavior: ask_one_owner_changing_question
+
+  - name: visual-system-audit
+    all_conditions:
+      - "The target is a repository or implemented product."
+      - "The requested outcome is visual-token, component-consistency, hierarchy, or visual-system implementation drift."
+      - "The output is an audit, not a frontend build."
+    conflict_behavior: ask_one_owner_changing_question
+
+  - name: behavior-strategy
+    all_conditions:
+      - "The limiting constraint is human behavior, such as adoption, trust, comprehension, retention, education, community, or habit."
+      - "The request is not primarily visual implementation or generic market research."
+
+  # Project, domain, and build dependencies
+  - name: agent-setup
+    all_conditions:
+      - "The requested artifact is repository agent instructions, AGENTS.md, operating commands, or local agent boundaries."
+      - "Enough current project truth exists to write accurate instructions."
+
+  - name: domain-modeling
+    all_conditions:
+      - "Project-specific business terms, bounded contexts, ownership, or domain relationships are disputed, overloaded, or inconsistent across evidence."
+      - "The requested outcome is terminology, context-boundary, or domain-ownership reconciliation, or a downstream architecture or interface decision depends on those meanings."
+      - "The request is not a generic definition question, generic documentation cleanup, or module-interface design with stable domain language."
+
+  - name: codebase-design
+    all_conditions:
+      - "One bounded module, interface, seam, adapter, or test surface needs a design decision."
+      - "Required domain terms and target boundaries are stable."
+
+  - name: to-prd
+    all_conditions:
+      - "The user requests a PRD or the accepted next artifact is a PRD."
+      - "The product decision is mature enough to document."
+
+  - name: to-issues
+    all_conditions:
+      - "An accepted plan, PRD, or spec exists."
+      - "The user requests executable issues or slices."
+
+  - name: tdd
+    all_conditions:
+      - "The user explicitly requests test-driven development or the accepted implementation contract requires red-green-refactor."
+      - "The implementation target is bounded."
+
+  - name: decision-prototype
+    all_conditions:
+      - "The unresolved question is logic, state, workflow, or architecture behavior rather than visual polish."
+      - "A disposable prototype can answer the decision faster than production implementation."
+
+  - name: implementation-notes
+    all_conditions:
+      - "Active build work has deviations, surprises, verification evidence, blockers, or deferred cleanup worth preserving."
+      - "The requested artifact is an implementation record, not a general handoff."
+
+  - name: build-explainer
+    all_conditions:
+      - "A meaningful build, fix, refactor, or prototype is complete enough to explain."
+      - "The user requests a reviewable explanation artifact."
+
+  # Rare, high-value owners
+  - name: security-best-practices
+    all_conditions:
+      - "The user requests secure coding guidance or a security-focused review."
+      - "The target language or framework is supported by the skill."
+
+  - name: repair-codex-session-jsonl
+    all_conditions:
+      - "The target is a Codex session JSONL or task that is dead, oversized, image-heavy, or failing to reopen."
+      - "The user requests diagnosis or repair of that session artifact."
+
+  - name: codex-slowdown-audit
+    all_conditions:
+      - "The reported problem is Codex responsiveness, context size, tool latency, or session slowdown."
+      - "The target session or workspace is identified."
+
+  - name: explain-visually
+    all_conditions:
+      - "The user requests a visual explanation or the relationship is materially clearer as a generated visual artifact."
+      - "The request is not a product UI build."
+
+  # Evidence-plane and host owners
+  - name: insane-search
+    all_conditions:
+      - "The target is public web content."
+      - "Normal search, browsing, or simple fetch was blocked, empty, structurally incomplete, or WAF-gated."
+      - "The target is not private, authenticated, paywalled, CAPTCHA-gated, or account-specific."
+
+  - name: openai-docs
+    all_conditions:
+      - "The user asks how to use an OpenAI product, API, Codex, ChatGPT, or official OpenAI SDK surface."
+      - "Current official guidance is required."
+
+  - name: browser:control-in-app-browser
+    all_conditions:
+      - "The task depends on dynamic or authenticated state that is explicitly confirmed to be open in the Codex in-app Browser."
+      - "The requested browser action and mutation boundary are identified."
+    conflict_behavior: "If the session location is not established, stop and ask which browser contains it."
+
+  - name: chrome:control-chrome
+    all_conditions:
+      - "The task depends on dynamic or authenticated state that is explicitly confirmed to be open in the user's Chrome browser."
+      - "The requested browser action and mutation boundary are identified."
+    conflict_behavior: "If the session location is not established, stop and ask which browser contains it."
+
+  - name: playwright
+    all_conditions:
+      - "The task requires repeatable browser automation, browser tests, or screenshot verification against a bounded target."
+      - "A persistent authenticated exploratory session is not required."
+
+  - name: playwright-interactive
+    all_conditions:
+      - "The task requires persistent browser state, interactive debugging, or iterative live-page inspection."
+      - "The target page and session boundary are identified."
+
+  # External or state-changing owners remain conditionally eligible only on explicit action intent.
+  - name: vercel-deploy
+    all_conditions:
+      - "The user explicitly requests deployment to Vercel."
+      - "The target project and environment are identified."
+      - "The deployment authorization boundary is satisfied."
+    external_action: true
+
+  - name: github:yeet
+    all_conditions:
+      - "The user explicitly requests publishing local changes to GitHub."
+      - "The repository, branch, and intended remote action are identified."
+      - "The external mutation boundary is satisfied."
+    external_action: true
+
+  - name: commit-and-changelog
+    all_conditions:
+      - "The user explicitly requests a commit plus changelog update."
+      - "The intended repository and change scope are verified."
+    state_changing: true
+
+  - name: linear
+    all_conditions:
+      - "The user explicitly requests a Linear issue or project action."
+      - "The external mutation boundary is satisfied."
+    external_action: true
+
+  # Fabled downstream leads may be inferred only inside proven active Fabled.
+  - name: design-lead
+    all_conditions:
+      - "active_container equals fabled."
+      - "The unresolved downstream phase is discovery or product design."
+
+  - name: build-lead
+    all_conditions:
+      - "active_container equals fabled."
+      - "An accepted implementation target and plan exist."
+      - "The unresolved downstream phase is build execution."
+
+  - name: review-lead
+    all_conditions:
+      - "active_container equals fabled."
+      - "A candidate build or artifact exists for adversarial review."
+
+blocked:
+  - name: legacy-project-router
+    reason: "Example retired alias. Replace this entry with blocked owners from your own environment, or remove it after adapting the profile and validator tests."
+    replacement_behavior: stop_and_explain
+
+unresolved_conflict_groups:
+  - id: pdf-owner
+    owners:
+      - pdf
+      - pdf:pdf
+    automatic_selection: disabled
+    resolution: "Choose one canonical owner after a same-task comparison. Until then both remain explicit-only."
+
+  - id: ci-fix-owner
+    owners:
+      - gh-fix-ci
+      - github:gh-fix-ci
+    automatic_selection: disabled
+    resolution: "Choose one canonical owner after comparing supported CI scope and current host integration."
+
+  - id: overlapping-frontend-upgrade-owners
+    owners:
+      - design-taste-frontend
+      - redesign-existing-projects
+    automatic_selection: disabled
+    resolution: "Keep explicit-only until benchmarked against the approved taste-skill and UI/UX outcome boundaries."
+
+prerequisite_rules:
+  - id: incident-before-local-diagnosis
+    when: "The failure spans unknown layers."
+    first_owner: incident-triage
+    then_owner: diagnose
+    add_then_only_if: "Triage localizes the defect to a deterministic component or code path."
+
+  - id: domain-before-module-design
+    when: "A module or interface decision depends on disputed business language or ownership."
+    first_owner: domain-modeling
+    then_owner: codebase-design
+    add_then_only_if: "The domain terms and target boundary become stable."
+
+  - id: project-truth-before-agent-rules
+    when: "Repository instructions are requested but current project truth is missing or stale."
+    first_owner: project-start
+    then_owner: agent-setup
+    add_then_only_if: "Current project evidence is established."
+
+  - id: prd-before-issues
+    when: "Issue slicing is requested without an accepted plan, spec, or PRD."
+    first_owner: to-prd
+    then_owner: to-issues
+    add_then_only_if: "The PRD or plan is accepted and issue-ready."
+
+  - id: skill-creation-before-hardening
+    when: "The request includes both creating a new skill and production hardening it."
+    first_owner: skill-maker
+    then_owner: skill-forge
+    add_then_only_if: "A candidate package exists and the user requested evidence-backed hardening, evaluation, or packaging."
+
+  - id: comprehension-before-consequential-action
+    when: "A consequential approval, merge, release, deployment, acceptance, or sign-off is attempted."
+    first_owner: understand-before-approve
+    then_owner: "The fitting domain or release owner."
+    add_then_only_if: "The readiness result allows an owner decision and the revision and environment remain unchanged."
+
+active_fabled_rules:
+  proof_required:
+    - "The request explicitly identifies Fabled as the active container."
+    - "Current run metadata identifies Fabled as owner."
+    - "A structured Save Context block contains session_pin: true."
+  generic_active_run_phrase_is_proof: false
+  select_fabled_downstream: false
+  return_only_first_unresolved_downstream_owner: true
+  boundary: compact-handoff
+
+maintenance:
+  review_interval_days: 60
+  promote_to_auto_route_requires:
+    - "A distinct, non-overlapping trigger boundary."
+    - "Successful history-derived or real-task evidence."
+    - "No regression in direct-owner, Fabled-container, or safety cases."
+  demote_to_explicit_only_when:
+    - "Repeated ambiguity with another preferred owner."
+    - "No successful routing evidence and no rare high-value justification."
+    - "The owner description broadens beyond the approved condition."
+  block_only_when:
+    - "The profile owner explicitly rejects or archives the owner."
+    - "The owner is confirmed superseded, broken, unsafe, or forbidden."
+  delete_only_after:
+    - "Dependency and prerequisite review."
+    - "Archive and rollback period."
+    - "Confirmation that the host or plugin manager will not regenerate the entry unexpectedly."
+
+profile_end: true

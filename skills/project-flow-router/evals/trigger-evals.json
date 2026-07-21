@@ -1,0 +1,38 @@
+[
+  {
+    "query": "Use project-flow-router to choose the next workflow for this messy repository.",
+    "should_trigger": true
+  },
+  {
+    "query": "Run project-flow-router and continue the accepted recovery route for this target.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which owner should run first when project context is stale but AGENTS.md is requested?",
+    "should_trigger": true
+  },
+  {
+    "query": "Use project-flow-router. The required authenticated session exists, but I do not know whether it is in the in-app Browser or Chrome.",
+    "should_trigger": true
+  },
+  {
+    "query": "Run incident-triage on this webhook outage.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain what project-flow-router does.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run skill-forge on project-flow-router.",
+    "should_trigger": false
+  },
+  {
+    "query": "Implement the accepted issue in src/auth.ts.",
+    "should_trigger": false
+  },
+  {
+    "query": "Use Fabled to own this complete design, build, review, and release lifecycle.",
+    "should_trigger": false
+  }
+]
