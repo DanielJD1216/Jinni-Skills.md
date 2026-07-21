@@ -16,8 +16,10 @@ Repository-level original work is licensed under MIT. Adapted or third-party mat
 |---|---|---|
 | [`understand-before-approve`](skills/understand-before-approve/) | Validated | Builds an evidence-backed comprehension gate before consequential decisions |
 | [`incident-triage`](skills/incident-triage/) | Validated | Converts unclear multi-layer failures into a read-only diagnostic packet before fixing |
+| [`project-start`](skills/project-start/) | Validated | Creates evidence-backed project memory and an operational diagnostic runbook |
+| [`agent-setup`](skills/agent-setup/) | Validated | Creates evidence-backed repository operating instructions for coding agents |
 
-## Initial Release Order
+## Release Order
 
 1. `understand-before-approve`
 2. `incident-triage`
@@ -25,6 +27,8 @@ Repository-level original work is licensed under MIT. Adapted or third-party mat
 4. `loop-engineering`
 5. `skill-forge`
 6. A generalized `project-flow-router`
+
+Entries 1 through 3 are published. The remaining entries are planned and must pass the same release checklist before publication.
 
 ## Repository Rules
 

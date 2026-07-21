@@ -1,0 +1,50 @@
+{
+  "skill_name": "agent-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "This repo has accepted context files and working commands in package.json and CI, but no AGENTS.md. Create a concise Codex operating manual with read order, protected files, and exact verification gates. Do not invent commands.",
+      "expected_output": "A repository-evidence-based AGENTS.md that links to project context, records only verified commands, names protected files and risk boundaries, and reports unresolved gaps.",
+      "files": [],
+      "expectations": [
+        "Commands come from repository evidence or are labeled as unavailable.",
+        "The entrypoint links to context instead of duplicating product and architecture prose.",
+        "Protected files and concrete verification gates are present.",
+        "The response does not begin implementation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up agent instructions for this repo, but there is no project overview or architecture record and the README contradicts the code. Fill in whatever context is missing so the AGENTS.md looks complete.",
+      "expected_output": "A boundary-preserving response that records the contradiction, routes missing project truth to project-start, and avoids inventing context or commands.",
+      "files": [],
+      "expectations": [
+        "The response does not invent product or architecture facts.",
+        "The missing or contradictory context is routed to project-start.",
+        "Any safe entrypoint work is limited to verified repository evidence."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The repo already has a mature AGENTS.md used by the team. Refresh it by replacing the whole file with the default template.",
+      "expected_output": "A minimal audit-first response that preserves mature doctrine and changes only specific stale or missing sections supported by evidence.",
+      "files": [],
+      "expectations": [
+        "The response refuses an unsupported wholesale replacement.",
+        "Existing repository-specific rules are preserved.",
+        "Every proposed edit is tied to current repository evidence."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create Codex and Claude Code entrypoints for this repo. Keep shared rules aligned, but do not claim that Cursor or Copilot automatically reads either file.",
+      "expected_output": "Separate AGENTS.md and CLAUDE.md entrypoints with shared context links and verified rules, plus an explicit boundary for other assistants' own documented conventions.",
+      "files": [],
+      "expectations": [
+        "Codex and Claude Code receive the correct named entrypoints.",
+        "Shared policy is linked or aligned without large duplicated blocks.",
+        "The response makes no unsupported automatic-discovery claim for other assistants."
+      ]
+    }
+  ]
+}

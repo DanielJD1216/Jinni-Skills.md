@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Setup"
+  short_description: "Create evidence-backed agent instructions"
+  default_prompt: "Use $agent-setup to inspect this repo and create or refresh only the missing or stale coding-agent operating instructions."

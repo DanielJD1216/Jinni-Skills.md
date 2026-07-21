@@ -1,0 +1,14 @@
+[
+  {"query": "Start this new repo by building durable project memory from the code and current decisions.", "should_trigger": true},
+  {"query": "This inherited codebase is messy and has no reliable architecture or progress context. Establish the current state first.", "should_trigger": true},
+  {"query": "Create the six project context files and a first-debug runbook before we implement anything.", "should_trigger": true},
+  {"query": "Refresh only the stale project overview and architecture context. Preserve the accepted files.", "should_trigger": true},
+  {"query": "We cannot resume this build because goals, decisions, current progress, and open questions are scattered.", "should_trigger": true},
+  {"query": "Add an operational diagnostic runbook without inventing ports, dashboards, or provider details.", "should_trigger": true},
+  {"query": "Fix this failing date parser and add a regression test.", "should_trigger": false},
+  {"query": "Audit README and setup docs after this feature changed.", "should_trigger": false},
+  {"query": "Our project context is current. Create a full AGENTS.md with nested instruction policy.", "should_trigger": false},
+  {"query": "Turn this approved feature plan into a PRD and implementation issues.", "should_trigger": false},
+  {"query": "Explain the architecture in this existing architecture.md file.", "should_trigger": false},
+  {"query": "Update progress-tracker.md with the slice we just finished.", "should_trigger": false}
+]

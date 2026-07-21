@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Start"
+  short_description: "Build evidence-backed project memory"
+  default_prompt: "Use $project-start to inspect this repo and create or refresh only the missing or stale project context and diagnostic runbook files. Do not create or modify an agent entrypoint unless I explicitly ask for one."

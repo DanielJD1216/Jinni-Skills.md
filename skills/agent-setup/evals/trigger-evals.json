@@ -1,0 +1,14 @@
+[
+  {"query": "Create an AGENTS.md for this repo using only commands and rules you can verify.", "should_trigger": true},
+  {"query": "Audit our stale CLAUDE.md and preserve the project-specific rules that still match the repo.", "should_trigger": true},
+  {"query": "Set up Codex instruction discovery, nested overrides, protected files, and verification gates.", "should_trigger": true},
+  {"query": "Our coding agents keep using the wrong test command. Refresh the repository operating instructions from package.json and CI.", "should_trigger": true},
+  {"query": "Link the accepted project context into concise Codex and Claude Code entrypoints.", "should_trigger": true},
+  {"query": "Review whether this mature AGENTS.md is stale before changing it.", "should_trigger": true},
+  {"query": "This new repo has no product overview or architecture context. Build project memory first.", "should_trigger": false},
+  {"query": "Fix the failing tests and update the implementation.", "should_trigger": false},
+  {"query": "Audit README, setup, and architecture docs for drift.", "should_trigger": false},
+  {"query": "Explain how AGENTS.md works in Codex without changing a repository.", "should_trigger": false},
+  {"query": "Our existing AGENTS.md is current. Add one new verified lint command.", "should_trigger": false},
+  {"query": "Create a PRD and split it into vertical issues.", "should_trigger": false}
+]

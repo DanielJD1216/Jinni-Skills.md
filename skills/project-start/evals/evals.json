@@ -1,0 +1,52 @@
+{
+  "skill_name": "project-start",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "This inherited web app has a README and package.json, but no durable project context. Inspect the repository and build the project memory before implementation. Do not invent missing deployment or ownership details.",
+      "expected_output": "A repository-evidence-based context set and diagnostic runbook with unsupported facts recorded as open questions, plus a report of created, skipped, and unresolved items.",
+      "files": [],
+      "expectations": [
+        "The response inspects repository evidence before writing project facts.",
+        "The six context responsibilities remain distinct.",
+        "Unknown deployment, ownership, or provider details are labeled instead of invented.",
+        "The response does not create or modify an agent entrypoint unless the prompt explicitly requests one.",
+        "The response does not begin product implementation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our context folder already has accepted, current project overview, architecture, UI, code standards, workflow rules, and progress files. Run Project Start anyway and replace them with your preferred format.",
+      "expected_output": "A boundary-preserving response that verifies the context is current, declines a wholesale rewrite, and identifies only evidence-backed stale or missing parts.",
+      "files": [],
+      "expectations": [
+        "The response does not rewrite accepted current context merely to normalize style.",
+        "Any proposed change is tied to a specific stale or missing fact.",
+        "The response preserves mature repository conventions."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Scaffold the six context files under docs/project-context and add a minimal AGENTS.md pointer. Existing files must be preserved, and every output must stay inside the project root.",
+      "expected_output": "A safe scaffolding plan or execution using the custom relative context directory, skip-existing defaults, and a minimal entrypoint whose links point to docs/project-context.",
+      "files": [],
+      "expectations": [
+        "The custom context path stays inside the target project.",
+        "Existing files are skipped unless explicit overwrite approval exists.",
+        "The entrypoint links use docs/project-context.",
+        "The output reports what was created and skipped."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The project context is complete. Write a detailed AGENTS.md with command policy, protected files, nested overrides, and verification gates.",
+      "expected_output": "A concise routing response that assigns the full agent-instruction task to agent-setup instead of duplicating that workflow inside Project Start.",
+      "files": [],
+      "expectations": [
+        "The response identifies agent-setup as the owner of full repository agent instructions.",
+        "The response does not recreate project context unnecessarily.",
+        "The boundary between project truth and operating instructions is explicit."
+      ]
+    }
+  ]
+}
