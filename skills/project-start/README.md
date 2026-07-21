@@ -1,8 +1,12 @@
 # Project Start
 
-`project-start` creates or refreshes durable project memory for AI-assisted software work. It captures product intent, architecture, UI rules, code standards, workflow rules, current progress, and first-debug procedures from repository evidence and explicit decisions.
+## Plain English
 
-## Use It For
+Use this skill when a project is new, inherited, confusing, or missing reliable memory. It inspects the repository and accepted decisions, then records what the product is, how the system works, what rules matter, and where work currently stands.
+
+It gives future agents a reliable map of the project instead of forcing every new session to reconstruct the same context.
+
+## When To Use It
 
 - a new repository that needs durable project context;
 - an inherited or messy codebase whose current state is unclear;
@@ -10,7 +14,28 @@
 - a missing operational diagnostic runbook;
 - resuming a build when decisions and current progress are scattered.
 
-Do not use it for a narrow code fix, routine documentation synchronization, or a repository whose accepted context is already current.
+## When Not To Use It
+
+- a narrow code fix;
+- routine documentation synchronization;
+- a repository whose accepted context is already current;
+- creating complete agent operating rules, which belongs to `agent-setup`.
+
+## What It Produces
+
+- `context/project-overview.md`;
+- `context/architecture.md`;
+- `context/ui-context.md`;
+- `context/code-standards.md`;
+- `context/ai-workflow-rules.md`;
+- `context/progress-tracker.md`;
+- `docs/guides/diagnostic-runbook.md`.
+
+Unknown facts remain open questions. The skill does not invent deployment details, providers, owners, commands, or production readiness.
+
+## Example
+
+An inherited TypeScript service has source code and a README but no reliable architecture or progress documentation. The skill inspects the evidence, creates the six context files and diagnostic runbook, and records authentication, deployment, and ownership as unresolved. It does not implement features or create `AGENTS.md` unless explicitly requested.
 
 ## Pair It With Agent Setup
 

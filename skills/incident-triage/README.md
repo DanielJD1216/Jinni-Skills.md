@@ -1,8 +1,12 @@
 # Incident Triage
 
-`incident-triage` turns unclear operational failures into a strict diagnostic packet before anyone redeploys, requeues, edits data, rotates credentials, or guesses at a fix.
+## Plain English
 
-## Use It For
+Use this skill when something important is broken but the failed layer is unclear. It investigates before anyone redeploys, requeues work, edits data, rotates credentials, or guesses at a fix.
+
+The goal is not to fix everything immediately. The goal is to prove where the failure starts and identify the smallest safe next action.
+
+## When To Use It
 
 - missing data with no proven failed layer;
 - broken staging or production behavior;
@@ -10,7 +14,25 @@
 - conflicting evidence across UI, API, database, infrastructure, and external services;
 - runbooks whose shortcuts may be stale.
 
-Use a narrower diagnostic or CI workflow when the failure is already deterministic and localized.
+## When Not To Use It
+
+- a small deterministic bug with a known failing function;
+- a localized test failure with a clear stack trace;
+- routine CI repair where the failed command and cause are already known;
+- preventive code review without an active incident.
+
+## What It Produces
+
+- the user-visible symptom and affected environment;
+- the first proven or most tightly bounded failed layer;
+- evidence checked and evidence still missing;
+- safe read-only checks;
+- actions that must not happen yet;
+- the next decision or narrowly scoped diagnostic action.
+
+## Example
+
+The report says, "Customer emails are not appearing." Instead of immediately changing the parser, the skill checks provider delivery, authentication, API receipt, database state, queue progress, and extraction in that order. It returns the first failed layer and a diagnostic packet before any fix begins.
 
 ## Install
 

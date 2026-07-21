@@ -1,6 +1,6 @@
 # Jinni Skills
 
-A curated collection of reusable agent skills maintained by Jinni.
+A curated collection of reusable agent skills maintained by Jinni. Each skill gives a coding agent a focused workflow, clear boundaries, and a defined output.
 
 ## Status
 
@@ -10,14 +10,44 @@ Only sanitized distribution copies belong here. Installed skills under personal 
 
 Repository-level original work is licensed under MIT. Adapted or third-party material must retain its upstream license and attribution, and may declare different terms inside its own directory.
 
-## Available Skills
+## Choose A Skill
 
-| Skill | Status | Purpose |
+```mermaid
+flowchart TD
+    A["What do you need right now?"] --> B{"Reliable project truth?"}
+    B -->|Yes| P["project-start"]
+    B -->|No| C{"Repository rules for coding agents?"}
+    C -->|Yes| S["agent-setup"]
+    C -->|No| D{"Diagnosis of an unclear multi-layer failure?"}
+    D -->|Yes| I["incident-triage"]
+    D -->|No| E{"Understanding before consequential approval?"}
+    E -->|Yes| U["understand-before-approve"]
+    E -->|No| N["Use a narrower task-specific workflow"]
+
+    P -.->|after context is accepted, when needed| S
+```
+
+## Published Skills
+
+| Skill | Plain-English purpose | What it produces |
 |---|---|---|
-| [`understand-before-approve`](skills/understand-before-approve/) | Validated | Builds an evidence-backed comprehension gate before consequential decisions |
-| [`incident-triage`](skills/incident-triage/) | Validated | Converts unclear multi-layer failures into a read-only diagnostic packet before fixing |
-| [`project-start`](skills/project-start/) | Validated | Creates evidence-backed project memory and an operational diagnostic runbook |
-| [`agent-setup`](skills/agent-setup/) | Validated | Creates evidence-backed repository operating instructions for coding agents |
+| [`understand-before-approve`](skills/understand-before-approve/) | Makes sure the decision-maker understands a consequential change before approving it | Evidence brief, comprehension check, grading, and approval verdict |
+| [`project-start`](skills/project-start/) | Builds reliable project memory from the repository and accepted decisions | Six focused context files and a first-debug runbook |
+| [`agent-setup`](skills/agent-setup/) | Tells coding agents how to work safely and correctly inside a repository | `AGENTS.md`, `CLAUDE.md`, or another supported agent entrypoint |
+| [`incident-triage`](skills/incident-triage/) | Finds the failed layer in a messy incident before anyone guesses at a fix | Read-only diagnostic packet, evidence gaps, safe checks, and the next decision |
+
+## How They Fit Together
+
+```mermaid
+flowchart LR
+    P["project-start<br/>What is true about this project?"] --> A["agent-setup<br/>How should agents work here?"]
+    A --> B["Implementation<br/>Build within the accepted boundaries"]
+    B -.->|unclear failure| I["incident-triage<br/>Prove the failed layer"]
+    B -.->|consequential approval| U["understand-before-approve<br/>Confirm understanding first"]
+    I -.->|high-risk fix approval| U
+```
+
+These skills are not a mandatory sequence. Use only the skill that matches the current situation. `project-start` and `agent-setup` are the main pair: one records project truth, and the other turns that truth into operating rules for agents.
 
 ## Release Order
 

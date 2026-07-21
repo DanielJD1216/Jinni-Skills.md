@@ -1,8 +1,12 @@
 # Understand Before Approve
 
-`understand-before-approve` creates an evidence-backed understanding gate before a consequential decision. It separates evidence, comprehension, owner judgment, approval, and execution so that a successful explanation or quiz never performs the action being considered.
+## Plain English
 
-## Use It For
+Use this skill when someone is about to approve an important change but should first prove they understand what will happen, why it matters, and how it can fail.
+
+The skill explains the decision from evidence, checks the decision-maker's understanding, and returns a verdict. It never treats passing the comprehension check as permission to perform the action.
+
+## When To Use It
 
 - merge and release decisions;
 - production deployments and migrations;
@@ -10,7 +14,25 @@
 - product or client acceptance;
 - architecture decisions with meaningful recovery or security consequences.
 
-Do not use it for ordinary education, generic code review, or trivial questions without a pending decision.
+## When Not To Use It
+
+- ordinary education with no pending approval;
+- generic code review;
+- trivial or easily reversible decisions;
+- execution that has already been approved and only needs implementation.
+
+## What It Produces
+
+- the decision being considered;
+- the evidence that supports the explanation;
+- a plain-English explanation of effects, risks, and recovery;
+- a short comprehension check;
+- grading with misunderstood areas called out;
+- an approval verdict that remains separate from execution.
+
+## Example
+
+Before approving a production database migration, the skill explains the schema change, expected downtime, rollback path, and unresolved risks. It then checks the approver's understanding and returns `APPROVED`, `REVISE`, or `ESCALATE`. It does not run the migration.
 
 ## Install
 
