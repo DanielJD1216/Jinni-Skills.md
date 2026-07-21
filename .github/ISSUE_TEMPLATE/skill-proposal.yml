@@ -1,0 +1,48 @@
+name: Skill proposal
+description: Propose a reusable workflow that is not already owned by a published skill.
+title: "[Skill proposal]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What recurring agent failure or decision does this skill solve?
+    validations:
+      required: true
+  - type: textarea
+    id: positive_triggers
+    attributes:
+      label: When it should run
+      description: Give two or three concrete prompts or situations.
+    validations:
+      required: true
+  - type: textarea
+    id: negative_triggers
+    attributes:
+      label: When it should not run
+      description: Name adjacent requests that need a different workflow or no skill.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected output
+      description: Describe the smallest useful result in plain English.
+    validations:
+      required: true
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Why an existing skill is not enough
+      description: Compare the proposal with the current published skills.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: This proposal contains only public, fictional, or sanitized examples.
+          required: true

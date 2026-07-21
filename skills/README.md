@@ -1,20 +1,21 @@
-# Skills
+# Published Skills
 
-Each child directory must be a self-contained, installable skill package.
+Every child directory is a complete, independently installable skill package.
 
-Do not symlink personal installed skills into this directory. Copy only a reviewed and sanitized distribution candidate.
+| Skill | Best first use |
+|---|---|
+| `project-flow-router` | the next useful workflow is unclear |
+| `project-start` | project context is missing or stale |
+| `agent-setup` | coding-agent repository rules are missing or stale |
+| `incident-triage` | an important failure spans unknown layers |
+| `understand-before-approve` | a consequential decision needs a comprehension gate |
 
-Expected shape:
+Install all skills:
 
-```text
-skills/
-  skill-name/
-    SKILL.md
-    README.md
-    agents/
-    references/
-    scripts/
-    tests/
+```bash
+python3 scripts/install_skills.py --target codex --all
 ```
 
-Only include directories that the skill actually uses.
+Run that command from the repository root. See [Getting Started](../docs/getting-started.md) for other hosts and selective installation.
+
+Do not symlink personal installed skills into this directory. Public packages must be sanitized, validated distribution copies.

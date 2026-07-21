@@ -1,0 +1,67 @@
+name: Bug report
+description: Report reproducible incorrect behavior in a skill or bundled tool.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove credentials, client data, private repository content, and internal URLs before submitting.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - project-flow-router
+        - project-start
+        - agent-setup
+        - incident-triage
+        - understand-before-approve
+        - installer or repository validator
+        - documentation
+        - other
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: Agent host and version
+      description: For example, Codex desktop or Claude Code, including the version when available.
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Command or prompt
+      description: Provide the shortest sanitized command or prompt that reproduces the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What happened? Include sanitized output when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: List the smallest sequence that reproduces the problem.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, private data, client identifiers, and internal URLs.
+          required: true

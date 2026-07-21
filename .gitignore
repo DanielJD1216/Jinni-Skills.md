@@ -15,3 +15,6 @@ dist/
 build/
 *.skill
 *.zip
+.coverage
+htmlcov/
+*.backup-*/
