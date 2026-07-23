@@ -4,6 +4,8 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-167d46.svg)](LICENSE)
 [![Published skills](https://img.shields.io/badge/published_skills-5-2563eb.svg)](skills/)
 
+![Jinni Skills: practical workflow guardrails for coding agents](docs/images/jinni-skills.jpg)
+
 Practical workflow guardrails for coding agents. Install them in two minutes, then call one by name or let the router choose the smallest useful workflow.
 
 These are not prompt collections. Each skill is an installable package with trigger rules, explicit boundaries, examples, evaluations, and focused verification.
@@ -72,6 +74,16 @@ If the new skills do not appear, restart the coding assistant once so it refresh
 | teach coding agents how to work in a repository | [`agent-setup`](skills/agent-setup/) | evidence-backed `AGENTS.md`, `CLAUDE.md`, or another entrypoint |
 | localize a messy production or staging failure | [`incident-triage`](skills/incident-triage/) | failed-layer evidence, safe checks, and the next diagnostic action |
 | approve a consequential change responsibly | [`understand-before-approve`](skills/understand-before-approve/) | explanation, comprehension check, grading, and readiness verdict |
+
+### Visual Skill Guide
+
+Click a card to open the complete skill documentation.
+
+| | |
+|---|---|
+| [![Project Flow Router: a railway switch choosing one workflow](docs/images/project-flow-router.jpg)](skills/project-flow-router/) | [![Project Start: a flashlight mapping a new or messy repository](docs/images/project-start.jpg)](skills/project-start/) |
+| [![Agent Setup: a coding agent following evidence-backed instructions](docs/images/agent-setup.jpg)](skills/agent-setup/) | [![Incident Triage: a magnifying glass identifying the failed layer](docs/images/incident-triage.jpg)](skills/incident-triage/) |
+| [![Understand Before Approve: an approval gate backed by inspection](docs/images/understand-before-approve.jpg)](skills/understand-before-approve/) | |
 
 Direct invocation is faster when the owner is obvious:
 

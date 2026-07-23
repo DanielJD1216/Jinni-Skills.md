@@ -2,6 +2,10 @@
 
 All notable public changes are recorded here.
 
+## Unreleased
+
+- Added an optimized collection overview and clickable visual guide for all five published skills.
+
 ## [0.1.0] - 2026-07-20
 
 - Added a safe multi-host installer with current Codex and Claude Code targets, an explicit legacy Codex target, dry-run, backups, and focused tests.
